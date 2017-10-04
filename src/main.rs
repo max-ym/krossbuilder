@@ -8,6 +8,9 @@ use gio::{APPLICATION_FLAGS_NONE, ApplicationExt};
 /// All stuff related to page content.
 mod page;
 
+/// Drawing tools. Allow to draw page content.
+mod draw;
+
 const MAIN_WINDOW_TITLE : &'static str = "Krossbuilder";
 const APP_ID            : &'static str = "com.krossbuilder";
 
