@@ -56,16 +56,22 @@ impl Drawer {
         use cairo::Format::Rgb24;
         let surface = ImageSurface::create(Rgb24, 1, 1).unwrap();
 
-        Drawer {
+        let drawer = Drawer {
             surface     : surface,
             style       : Box::new(Default::default()),
-        }
+        };
+
+        drawer.fill_background();
+
+        drawer
     }
 
-    fn fill_background(&self, color: &Color) {
+    /// Clear the surface and paing background with color specified in the
+    /// style.
+    fn fill_background(&self) {
         let cr = Context::new(&self.surface);
 
-        color.set_source_in(&cr);
+        self.style.bg_color.set_source_in(&cr);
         cr.paint();
     }
 }
