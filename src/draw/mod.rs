@@ -55,8 +55,13 @@ impl Default for PageStyle {
 
 impl Drawer {
 
-    /// Create new drawer.
+    /// Create new drawer with surface size 1x1.
     pub fn new() -> Self {
+        Self::new_with_size(1, 1)
+    }
+
+    /// Create new drawer with specified size of surface.
+    pub fn new_with_size(width: usize, height: usize) -> Self {
         use cairo::Format::Rgb24;
         let surface = ImageSurface::create(Rgb24, 1, 1).unwrap();
         let context = Context::new(&surface);
