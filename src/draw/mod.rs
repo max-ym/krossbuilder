@@ -1,6 +1,6 @@
 use super::page::Page;
 
-use cairo::Context;
+use cairo::{Context, ImageSurface, Surface};
 use gtk::{DrawingArea, Inhibit};
 
 #[derive(Default)]
@@ -15,6 +15,14 @@ pub struct PageStyle {
     pub line_color      : Color,
     pub line_width      : f64,
     pub cell_size       : f64,
+}
+
+/// Drawing functions to render page elements to surface and show it when
+/// needed on the screen.
+pub struct Drawer {
+    /// Surface with prerendered stuff.
+    surface     : ImageSurface,
+    style       : Box<PageStyle>,
 }
 
 impl Color {
@@ -41,59 +49,27 @@ impl Default for PageStyle {
     }
 }
 
-/// Page style currently set as prefered.
-fn page_style() -> PageStyle {
-    // TODO default one is returned. Read actual settings in the future.
-    Default::default()
-}
+impl Drawer {
 
-fn page() -> Page {
-    // TEST
-    Page::new(10, 10)
+    /// Create new drawer.
+    pub fn new(cr: &Context) -> Self {
+        use cairo::Format::Rgb24;
+        let surface = ImageSurface::create(Rgb24, 1, 1).unwrap();
+
+        Drawer {
+            surface     : surface,
+            style       : Box::new(Default::default()),
+        }
+    }
+
+    fn fill_background(&self, color: &Color) {
+        let cr = Context::new(&self.surface);
+
+        color.set_source_in(&cr);
+        cr.paint();
+    }
 }
 
 pub fn draw_fn(area: &DrawingArea, cr: &Context) -> Inhibit {
-    let paint_background = |style: &PageStyle| {
-        style.bg_color.set_source_in(cr);
-        cr.paint();
-    };
-
-    let paint_grid = |style: &PageStyle, rows: u16, cols: u16| {
-        let cell_width = style.cell_size + style.line_width;
-
-        // Length of vertical and horizontal line.
-        let ver_length = cols as f64 * cell_width;
-        let hor_length = rows as f64 * cell_width;
-
-        // Set line color.
-        style.line_color.set_source_in(cr);
-        cr.set_line_width(style.line_width);
-
-        for i in 0..(rows + 1) {
-            let offset = i as f64 * cell_width;
-            println!("{0}", cell_width);
-
-            cr.move_to(0.5, offset + 0.5);
-            cr.line_to(hor_length + 0.5, offset + 0.5);
-            cr.stroke();
-        }
-
-        for i in 0..(cols + 1) {
-            let offset = i as f64 * cell_width;
-
-            cr.move_to(offset + 0.5, 0.5);
-            cr.line_to(offset + 0.5, ver_length + 0.5);
-            cr.stroke();
-        }
-    };
-
-    let style = page_style();
-    let page = page();
-
-    cr.set_antialias(::cairo::Antialias::Fast);
-
-    paint_background(&style);
-    paint_grid(&style, page.cols(), page.rows());
-
-    Inhibit(false)
+        unimplemented!()
 }
