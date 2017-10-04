@@ -4,6 +4,9 @@ use gtk::prelude::*;
 use gtk::{Window, WindowType};
 use gio::APPLICATION_FLAGS_NONE;
 
+/// All stuff related to page content.
+mod page;
+
 const MAIN_WINDOW_TITLE : &'static str = "Krossbuilder";
 const APP_ID            : &'static str = "com.krossbuilder";
 

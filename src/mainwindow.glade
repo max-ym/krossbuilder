@@ -17,6 +17,36 @@
     <property name="can_focus">False</property>
     <property name="stock">gtk-revert-to-saved</property>
   </object>
+  <object class="GtkImage" id="image4">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-new</property>
+  </object>
+  <object class="GtkImage" id="image5">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-open</property>
+  </object>
+  <object class="GtkImage" id="image6">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-save</property>
+  </object>
+  <object class="GtkImage" id="image7">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-save-as</property>
+  </object>
+  <object class="GtkImage" id="image8">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-quit</property>
+  </object>
+  <object class="GtkImage" id="image9">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-preferences</property>
+  </object>
   <object class="GtkApplicationWindow" id="applicationwindow1">
     <property name="can_focus">False</property>
     <child>
@@ -45,38 +75,38 @@
                         <property name="can_focus">False</property>
                         <child>
                           <object class="GtkImageMenuItem" id="imagemenuitem1">
-                            <property name="label">gtk-new</property>
+                            <property name="label">Створити</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="use_underline">True</property>
-                            <property name="use_stock">True</property>
+                            <property name="image">image4</property>
+                            <property name="use_stock">False</property>
                           </object>
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="imagemenuitem2">
-                            <property name="label">gtk-open</property>
+                            <property name="label">Відкрити</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="use_underline">True</property>
-                            <property name="use_stock">True</property>
+                            <property name="image">image5</property>
+                            <property name="use_stock">False</property>
                           </object>
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="imagemenuitem3">
-                            <property name="label">gtk-save</property>
+                            <property name="label">Зберегти</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="use_underline">True</property>
-                            <property name="use_stock">True</property>
+                            <property name="image">image6</property>
+                            <property name="use_stock">False</property>
                           </object>
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="imagemenuitem4">
-                            <property name="label">gtk-save-as</property>
+                            <property name="label">Зберегти як...</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="use_underline">True</property>
-                            <property name="use_stock">True</property>
+                            <property name="image">image7</property>
+                            <property name="use_stock">False</property>
                           </object>
                         </child>
                         <child>
@@ -94,12 +124,21 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkImageMenuItem" id="imagemenuitem5">
-                            <property name="label">gtk-quit</property>
+                          <object class="GtkImageMenuItem" id="imagemenuitem12">
+                            <property name="label" translatable="yes">Налаштування</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="use_underline">True</property>
-                            <property name="use_stock">True</property>
+                            <property name="image">image9</property>
+                            <property name="use_stock">False</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkImageMenuItem" id="imagemenuitem5">
+                            <property name="label">Вийти</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="image">image8</property>
+                            <property name="use_stock">False</property>
                           </object>
                         </child>
                       </object>
@@ -116,6 +155,71 @@
                       <object class="GtkMenu" id="menu2">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <child>
+                          <object class="GtkMenuItem" id="menuitem18">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Задати...</property>
+                            <property name="use_underline">True</property>
+                            <child type="submenu">
+                              <object class="GtkMenu" id="menu6">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <child>
+                                  <object class="GtkMenuItem" id="menuitem21">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="label" translatable="yes">Слова</property>
+                                    <property name="use_underline">True</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkMenuItem" id="menuitem15">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="tooltip_text" translatable="yes">Переглянути або задати нове ключове слово. Дозволяє автоматично підібрати клітинки ключового слова.</property>
+                                    <property name="label" translatable="yes">Ключове слово</property>
+                                    <property name="use_underline">True</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkMenuItem" id="menuitem16">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="tooltip_text" translatable="yes">Задати місця для малюнків на сторінці.</property>
+                                    <property name="label" translatable="yes">Малюнки</property>
+                                    <property name="use_underline">True</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkMenuItem" id="menuitem17">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="tooltip_text" translatable="yes">Задати поля на сторінці. Для сторінок, що мають не прямокутну форму.</property>
+                                    <property name="label" translatable="yes">Поля</property>
+                                    <property name="use_underline">True</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkMenuItem" id="menuitem19">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="label" translatable="yes">Визначення</property>
+                                    <property name="use_underline">True</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkMenuItem" id="menuitem20">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="label" translatable="yes">Стрілки</property>
+                                    <property name="use_underline">True</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
                         <child>
                           <object class="GtkMenuItem" id="menuitem4">
                             <property name="visible">True</property>
@@ -233,73 +337,8 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkMenuItem" id="menuitem18">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Задати...</property>
-                            <property name="use_underline">True</property>
-                            <child type="submenu">
-                              <object class="GtkMenu" id="menu6">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <child>
-                                  <object class="GtkMenuItem" id="menuitem21">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Слова</property>
-                                    <property name="use_underline">True</property>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkMenuItem" id="menuitem15">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="tooltip_text" translatable="yes">Переглянути або задати нове ключове слово. Дозволяє автоматично підібрати клітинки ключового слова.</property>
-                                    <property name="label" translatable="yes">Ключове слово</property>
-                                    <property name="use_underline">True</property>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkMenuItem" id="menuitem16">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="tooltip_text" translatable="yes">Задати місця для малюнків на сторінці.</property>
-                                    <property name="label" translatable="yes">Малюнки</property>
-                                    <property name="use_underline">True</property>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkMenuItem" id="menuitem17">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="tooltip_text" translatable="yes">Задати поля на сторінці. Для сторінок, що мають не прямокутну форму.</property>
-                                    <property name="label" translatable="yes">Поля</property>
-                                    <property name="use_underline">True</property>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkMenuItem" id="menuitem19">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Визначення</property>
-                                    <property name="use_underline">True</property>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkMenuItem" id="menuitem20">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Стрілки</property>
-                                    <property name="use_underline">True</property>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
                           <object class="GtkImageMenuItem" id="imagemenuitem9">
-                            <property name="label" translatable="yes">Налаштування</property>
+                            <property name="label" translatable="yes">Формат</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="image">image2</property>
@@ -404,6 +443,7 @@
                     <child>
                       <object class="GtkDrawingArea" id="drawingarea1">
                         <property name="visible">True</property>
+                        <property name="app_paintable">True</property>
                         <property name="can_focus">False</property>
                       </object>
                       <packing>
