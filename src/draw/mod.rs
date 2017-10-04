@@ -51,7 +51,7 @@ impl Default for PageStyle {
             line_color      : Color::new(0., 0., 0.),   // Black
             line_width      : 1.,
             cell_size       : 48.,
-            cell_font_size  : 10.,
+            cell_font_size  : 26.,
             cell_font_color : Color::new(0., 0., 0.),   // Black
         }
     }
@@ -67,7 +67,7 @@ impl Drawer {
     /// Create new drawer with specified size of surface.
     pub fn new_with_size(width: usize, height: usize) -> Self {
         use cairo::Format::Rgb24;
-        let surface = ImageSurface::create(Rgb24, 1, 1).unwrap();
+        let surface = ImageSurface::create(Rgb24, width as _, height as _).unwrap();
         let context = Context::new(&surface);
 
         Drawer {
@@ -105,7 +105,6 @@ impl Drawer {
         // Draw rows.
         for i in 0..(rows + 1) {
             let offset = i as f64 * cell_width;
-            println!("{0}", cell_width);
 
             self.cr().move_to(0.5, offset + 0.5);
             self.cr().line_to(hor_length + 0.5, offset + 0.5);
@@ -138,35 +137,47 @@ impl Drawer {
 
         let cr = self.cr();
 
-        // Setup font parameters.
-        cr.set_font_size(self.style.cell_font_size);
-        self.style.cell_font_color.set_source_in(cr);
-        cr.set_font_face(FontFace::toy_create(
-                "monospace",
-                FontSlant::Normal,
-                FontWeight::Normal,
-        ));
-
         // Wrap a letter in the string.
         let mut s = String::with_capacity(8);
         s.push(letter);
+
+        // Setup font parameters.
+        cr.set_font_face(FontFace::toy_create(
+                "Inconsolata",
+                FontSlant::Normal,
+                FontWeight::Normal
+        ));
+        cr.set_font_size(self.style.cell_font_size);
 
         // Calculate letter position offsets to center it.
         let txtext = cr.text_extents(s.as_str());
         let letter_offset_x = -txtext.width  / 2.;
         let letter_offset_y = -txtext.height / 2.;
         let letter_x = cell_center + letter_offset_x;
-        let letter_y = cell_center + letter_offset_y;
+        let letter_y = cell_center + letter_offset_y + txtext.height;
 
         // Find exact absolute coords of a letter.
         let x = cell_x + letter_x;
         let y = cell_y + letter_y;
 
+        self.style.cell_font_color.set_source_in(cr);
         cr.move_to(x, y);
         cr.show_text(s.as_str());
+    }
+
+    pub fn test(cr: &Context) {
+        let dr = Drawer::new_with_size(256, 256);
+
+        dr.fill_background();
+        dr.paint_grid(3, 3);
+        dr.paint_letter(1, 1, 'a');
+
+        cr.set_source_surface(&dr.surface, 0., 0.);
+        cr.paint();
     }
 }
 
 pub fn draw_fn(area: &DrawingArea, cr: &Context) -> Inhibit {
-        unimplemented!()
+        Drawer::test(cr);
+        Inhibit(false)
 }
