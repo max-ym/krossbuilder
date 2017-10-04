@@ -1,0 +1,13 @@
+[package]
+name = "krossbuilder"
+version = "0.1.0"
+authors = ["Maxym Naumchyk <max.naumch@gmail.com>"]
+
+[dependencies]
+
+[dependencies.gtk]
+version = "0.1.0"
+features = ["v3_14"]
+
+[dependencies.gio]
+version = "0.1.0"
