@@ -35,7 +35,7 @@ impl Default for PageStyle {
         PageStyle {
             bg_color    : Color::new(1., 1., 1.),   // White
             line_color  : Color::new(0., 0., 0.),   // Black
-            line_width  : 0.5,
+            line_width  : 1.,
             cell_size   : 48.,
         }
     }
@@ -71,17 +71,18 @@ pub fn draw_fn(area: &DrawingArea, cr: &Context) -> Inhibit {
 
         for i in 0..(rows + 1) {
             let offset = i as f64 * cell_width;
+            println!("{0}", cell_width);
 
-            cr.move_to(0., offset);
-            cr.line_to(hor_length, offset);
+            cr.move_to(0.5, offset + 0.5);
+            cr.line_to(hor_length + 0.5, offset + 0.5);
             cr.stroke();
         }
 
         for i in 0..(cols + 1) {
             let offset = i as f64 * cell_width;
 
-            cr.move_to(offset, 0.);
-            cr.line_to(offset, ver_length);
+            cr.move_to(offset + 0.5, 0.5);
+            cr.line_to(offset + 0.5, ver_length + 0.5);
             cr.stroke();
         }
     };
