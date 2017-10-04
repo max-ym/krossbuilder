@@ -1,8 +1,9 @@
+extern crate cairo;
 extern crate gtk;
 extern crate gio;
 use gtk::prelude::*;
 use gtk::{Window, WindowType};
-use gio::APPLICATION_FLAGS_NONE;
+use gio::{APPLICATION_FLAGS_NONE, ApplicationExt};
 
 /// All stuff related to page content.
 mod page;
@@ -33,7 +34,8 @@ fn main() {
             Inhibit(false)
         });
     });
-    application.run(0, &[]);
+
+    application.run(&[]);
 
     // Run main loop
     gtk::main();

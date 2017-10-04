@@ -5,9 +5,12 @@ authors = ["Maxym Naumchyk <max.naumch@gmail.com>"]
 
 [dependencies]
 
+[dependencies.cairo-rs]
+version = "0.2.0"
+
 [dependencies.gtk]
-version = "0.1.0"
+version = "0.2.0"
 features = ["v3_14"]
 
 [dependencies.gio]
-version = "0.1.0"
+version = "0.2.0"
