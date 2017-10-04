@@ -22,6 +22,10 @@ pub struct PageStyle {
 pub struct Drawer {
     /// Surface with prerendered stuff.
     surface     : ImageSurface,
+
+    /// Cairo context to draw on the surface.
+    context     : Context,
+
     style       : Box<PageStyle>,
 }
 
@@ -55,9 +59,11 @@ impl Drawer {
     pub fn new(cr: &Context) -> Self {
         use cairo::Format::Rgb24;
         let surface = ImageSurface::create(Rgb24, 1, 1).unwrap();
+        let context = Context::new(&surface);
 
         let drawer = Drawer {
             surface     : surface,
+            context     : context,
             style       : Box::new(Default::default()),
         };
 
@@ -66,13 +72,16 @@ impl Drawer {
         drawer
     }
 
+    /// Cairo context reference.
+    fn cr(&self) -> &Context {
+        &self.context
+    }
+
     /// Clear the surface and paing background with color specified in the
     /// style.
     fn fill_background(&self) {
-        let cr = Context::new(&self.surface);
-
-        self.style.bg_color.set_source_in(&cr);
-        cr.paint();
+        self.style.bg_color.set_source_in(self.cr());
+        self.context.paint();
     }
 }
 
