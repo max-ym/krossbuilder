@@ -56,7 +56,7 @@ impl Default for PageStyle {
 impl Drawer {
 
     /// Create new drawer.
-    pub fn new(cr: &Context) -> Self {
+    pub fn new() -> Self {
         use cairo::Format::Rgb24;
         let surface = ImageSurface::create(Rgb24, 1, 1).unwrap();
         let context = Context::new(&surface);
