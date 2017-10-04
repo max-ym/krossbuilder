@@ -2,7 +2,7 @@ extern crate cairo;
 extern crate gtk;
 extern crate gio;
 use gtk::prelude::*;
-use gtk::{Window, WindowType};
+use gtk::{DrawingArea, Window, WindowType};
 use gio::{APPLICATION_FLAGS_NONE, ApplicationExt};
 
 /// All stuff related to page content.
@@ -36,6 +36,10 @@ fn main() {
             gtk::main_quit();
             Inhibit(false)
         });
+
+        let area: DrawingArea
+                = builder.get_object("drawingarea1").unwrap();
+        area.connect_draw(draw::draw_fn);
     });
 
     application.run(&[]);
