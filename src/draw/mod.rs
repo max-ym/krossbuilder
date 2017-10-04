@@ -83,6 +83,39 @@ impl Drawer {
         self.style.bg_color.set_source_in(self.cr());
         self.context.paint();
     }
+
+    /// Paint grid with specified count of rows and columns.
+    fn paint_grid(&self, cols: u16, rows: u16) {
+        let style = &self.style;
+        let cell_width = style.cell_size + style.line_width;
+
+        // Length of vertical and horizontal line.
+        let ver_length = cols as f64 * cell_width;
+        let hor_length = rows as f64 * cell_width;
+
+        // Set line color.
+        style.line_color.set_source_in(self.cr());
+        self.cr().set_line_width(style.line_width);
+
+        // Draw rows.
+        for i in 0..(rows + 1) {
+            let offset = i as f64 * cell_width;
+            println!("{0}", cell_width);
+
+            self.cr().move_to(0.5, offset + 0.5);
+            self.cr().line_to(hor_length + 0.5, offset + 0.5);
+            self.cr().stroke();
+        }
+
+        // Draw cols.
+        for i in 0..(cols + 1) {
+            let offset = i as f64 * cell_width;
+
+            self.cr().move_to(offset + 0.5, 0.5);
+            self.cr().line_to(offset + 0.5, ver_length + 0.5);
+            self.cr().stroke();
+        }
+    }
 }
 
 pub fn draw_fn(area: &DrawingArea, cr: &Context) -> Inhibit {
