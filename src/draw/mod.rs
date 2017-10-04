@@ -35,7 +35,7 @@ impl Default for PageStyle {
         PageStyle {
             bg_color    : Color::new(1., 1., 1.),   // White
             line_color  : Color::new(0., 0., 0.),   // Black
-            line_width  : 1.,
+            line_width  : 0.5,
             cell_size   : 48.,
         }
     }
@@ -89,9 +89,10 @@ pub fn draw_fn(area: &DrawingArea, cr: &Context) -> Inhibit {
     let style = page_style();
     let page = page();
 
+    cr.set_antialias(::cairo::Antialias::Fast);
+
     paint_background(&style);
     paint_grid(&style, page.cols(), page.rows());
-
 
     Inhibit(false)
 }
