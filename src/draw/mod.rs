@@ -66,15 +66,11 @@ impl Drawer {
         let surface = ImageSurface::create(Rgb24, 1, 1).unwrap();
         let context = Context::new(&surface);
 
-        let drawer = Drawer {
+        Drawer {
             surface     : surface,
             context     : context,
             style       : Box::new(Default::default()),
-        };
-
-        drawer.fill_background();
-
-        drawer
+        }
     }
 
     /// Cairo context reference.
