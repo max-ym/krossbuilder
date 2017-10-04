@@ -7,6 +7,8 @@ use gio::APPLICATION_FLAGS_NONE;
 const MAIN_WINDOW_TITLE : &'static str = "Krossbuilder";
 const APP_ID            : &'static str = "com.krossbuilder";
 
+const MAIN_WINDOW_GLADE : &'static str = include_str!("mainwindow.glade");
+
 fn main() {
     // Initialize GTK.
     let gtk_init_status = gtk::Application::new(
@@ -18,9 +20,10 @@ fn main() {
     }
     let application = gtk_init_status.unwrap();
     application.connect_activate(|_| {
-        let main_window = Window::new(WindowType::Toplevel);
+        let builder = gtk::Builder::new_from_string(MAIN_WINDOW_GLADE);
+        let main_window: Window
+                = builder.get_object("applicationwindow1").unwrap();
         main_window.set_title(MAIN_WINDOW_TITLE);
-        main_window.set_default_size(800, 600);
         main_window.show_all();
         main_window.connect_delete_event(|_, _| {
             gtk::main_quit();
